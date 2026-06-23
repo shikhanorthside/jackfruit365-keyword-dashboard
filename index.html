@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jackfruit365 · Keyword Analysis | NorthSide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;overflow:hidden}
+#root{display:flex;height:100vh;background:#f0f2f5}
+
+/* ── SIDEBAR ── */
+#sb{width:236px;min-width:236px;background:#111111;display:flex;flex-direction:column;box-shadow:2px 0 12px rgba(0,0,0,.25)}
+.sb-logo{padding:24px 20px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-logo img{display:block}
+.sb-divider{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:1.4px;padding:16px 20px 6px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 20px;color:rgba(255,255,255,.44);font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s;border-left:3px solid transparent;user-select:none}
+.nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
+.nav-item.active{color:#00c9a7;border-left-color:#00c9a7;background:rgba(0,201,167,.07)}
+.ni{width:14px;text-align:center;font-size:12px;flex-shrink:0}
+.sb-foot{margin-top:auto;padding:16px 20px;border-top:1px solid rgba(255,255,255,.07)}
+.sf-l{font-size:9px;font-weight:700;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:.9px;margin-bottom:3px}
+.sf-v{font-size:11px;color:rgba(255,255,255,.42);margin-bottom:9px}
+.sf-conf{display:inline-block;font-size:8px;font-weight:700;letter-spacing:2.5px;color:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:2px 7px;text-transform:uppercase}
+
+/* ── MAIN ── */
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.bbar{background:#1a1a1a;padding:13px 28px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;border-bottom:2px solid #00c9a7}
+.bb-name{color:#fff;font-size:15px;font-weight:800;letter-spacing:.9px}
+.bb-sub{color:rgba(255,255,255,.38);font-size:11px;margin-top:2px}
+.bb-r{text-align:right}
+.bb-period{color:#00c9a7;font-size:12.5px;font-weight:700}
+.bb-conf{color:rgba(255,255,255,.22);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
+.panels{flex:1;overflow-y:auto;padding:26px 28px 48px}
+.panel{display:none}.panel.active{display:block}
+
+/* ── TYPOGRAPHY ── */
+.eyebrow{font-size:10px;font-weight:700;color:#00c9a7;text-transform:uppercase;letter-spacing:1.6px;margin-bottom:9px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:'';flex:1;height:1px;background:rgba(0,201,167,.22)}
+h2{font-size:22px;font-weight:800;color:#0f172a;letter-spacing:-.4px;margin-bottom:5px}
+.sub{font-size:13px;color:#64748b;margin-bottom:22px;line-height:1.55}
+
+/* ── CARDS ── */
+.card{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:22px 24px;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.ct{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.9px;margin-bottom:14px}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.mb16{margin-bottom:16px}.mb20{margin-bottom:20px}
+
+/* ── KPI CARDS ── */
+.kc{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:20px 20px;box-shadow:0 1px 5px rgba(0,0,0,.05)}
+.kl{font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.9px;margin-bottom:9px}
+.kv{font-size:28px;font-weight:800;color:#0f172a;line-height:1;letter-spacing:-.5px}
+.kv.teal{color:#00c9a7}.kv.grn{color:#16a34a}.kv.amb{color:#d97706}
+.km{margin-top:9px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── BADGES ── */
+.b{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-grn{background:#dcfce7;color:#15803d}.b-teal{background:rgba(0,201,167,.12);color:#047857}
+.b-blu{background:#dbeafe;color:#1d4ed8}.b-amb{background:#fef3c7;color:#92400e}
+.b-neu{background:#f1f5f9;color:#64748b}.b-pur{background:#ede9fe;color:#6d28d9}
+
+/* ── ACTION TAGS ── */
+.tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:.3px}
+.tH{background:#dcfce7;color:#14532d}.tS{background:#dbeafe;color:#1e3a8a}
+.tO{background:#fef3c7;color:#78350f}.tR{background:#f1f5f9;color:#475569}
+
+/* ── INSIGHT BOXES ── */
+.ins{border-radius:12px;padding:16px 20px;margin-bottom:16px;border-left:4px solid}
+.ins-teal{background:rgba(0,201,167,.06);border-color:#00c9a7}
+.ins-grn{background:#f0fdf4;border-color:#16a34a}
+.ins-blu{background:#eff6ff;border-color:#3b82f6}
+.ins-pur{background:#faf5ff;border-color:#8b5cf6}
+.ins-gold{background:#fffbeb;border-color:#d97706}
+.il{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;opacity:.6;margin-bottom:5px;color:#0f172a}
+.it{font-size:13px;line-height:1.65;color:#1e293b}
+.it strong{font-weight:700;color:#0f172a}
+.it .big{font-size:18px;font-weight:800;color:#00c9a7}
+
+/* ── THEME CARDS ── */
+.theme-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+.tc{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:20px;box-shadow:0 1px 5px rgba(0,0,0,.04);transition:box-shadow .2s;overflow:hidden;position:relative}
+.tc:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.tc.brand::before{background:linear-gradient(90deg,#00c9a7,#00e5c0)}
+.tc.cat::before{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.tc.health::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.tc-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.9px;margin-bottom:5px}
+.tc.brand .tc-label{color:#00c9a7}.tc.cat .tc-label{color:#3b82f6}.tc.health .tc-label{color:#8b5cf6}
+.tc-roas{font-size:26px;font-weight:800;color:#0f172a;letter-spacing:-.5px;margin-bottom:2px}
+.tc-orders{font-size:12px;color:#64748b;margin-bottom:12px}
+.tc-bar{height:4px;background:#f1f5f9;border-radius:2px;margin-bottom:10px}
+.tc-bar-fill{height:100%;border-radius:2px}
+.tc.brand .tc-bar-fill{background:#00c9a7}.tc.cat .tc-bar-fill{background:#3b82f6}.tc.health .tc-bar-fill{background:#8b5cf6}
+.tc-insight{font-size:11.5px;color:#64748b;line-height:1.55}
+.tc-insight strong{color:#0f172a;font-weight:600}
+
+/* ── GROWTH CARDS ── */
+.gc{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:20px;box-shadow:0 1px 5px rgba(0,0,0,.04);transition:box-shadow .2s}
+.gc:hover{box-shadow:0 5px 20px rgba(0,0,0,.1)}
+.gc-num{width:32px;height:32px;border-radius:10px;background:#00c9a7;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.gc-title{font-size:14px;font-weight:700;color:#0f172a;margin-bottom:6px}
+.gc-text{font-size:12.5px;color:#64748b;line-height:1.6}
+.gc-metric{font-size:12px;font-weight:700;color:#00c9a7;margin-top:10px;display:flex;align-items:center;gap:5px}
+
+/* ── RECO CARDS ── */
+.rc{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);border-left:4px solid #00c9a7;padding:18px 22px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 1px 5px rgba(0,0,0,.04);transition:box-shadow .2s}
+.rc:hover{box-shadow:0 5px 20px rgba(0,0,0,.09)}
+.rc-num{width:32px;height:32px;border-radius:50%;background:#0f172a;color:#00c9a7;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rc-title{font-size:14px;font-weight:700;color:#0f172a;margin-bottom:5px}
+.rc-text{font-size:12.5px;color:#64748b;line-height:1.6}
+.rc-out{font-size:12px;font-weight:600;color:#15803d;margin-top:8px}
+.rc-pri{flex-shrink:0;margin-top:3px}
+
+/* ── ACTION PLAN ── */
+.ap-h{font-size:10.5px;font-weight:800;color:#00c9a7;text-transform:uppercase;letter-spacing:1.2px;margin:22px 0 10px;padding-bottom:8px;border-bottom:2px solid rgba(0,201,167,.18)}
+.ap-r{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05);align-items:flex-start}
+.ap-r:last-child{border-bottom:none}
+.ap-c{width:28px;height:28px;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ap-c.p1{background:#dcfce7;color:#14532d}.ap-c.p2{background:#dbeafe;color:#1e3a8a}.ap-c.p3{background:#fef3c7;color:#92400e}
+.ap-t{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:3px}
+.ap-d{font-size:12px;color:#94a3b8;line-height:1.5}
+.ap-o{font-size:11.5px;font-weight:600;color:#15803d;margin-top:5px}
+.pp{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;flex-shrink:0;margin-top:3px}
+.pp.p1{background:#dcfce7;color:#14532d}.pp.p2{background:#dbeafe;color:#1e3a8a}.pp.p3{background:#fef3c7;color:#92400e}
+
+/* ── BEHAVIOUR CARDS ── */
+.beh-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.beh-card{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:20px;box-shadow:0 1px 5px rgba(0,0,0,.04)}
+.beh-val{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:3px}
+.beh-label{font-size:11px;color:#64748b;margin-bottom:10px}
+.beh-bar{height:6px;background:#f1f5f9;border-radius:3px;margin:8px 0}
+.beh-bar-f{height:100%;border-radius:3px}
+.beh-sub{font-size:12px;color:#64748b;line-height:1.55}
+
+/* ── SEG CARDS ── */
+.seg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.sc{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.07);padding:22px;position:relative;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.04)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.sc.hero::before{background:linear-gradient(90deg,#16a34a,#22c55e)}
+.sc.scale::before{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.sc.opp::before{background:linear-gradient(90deg,#d97706,#fbbf24)}
+.sc.ref::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.sc-label{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+.sc.hero .sc-label{color:#16a34a}.sc.scale .sc-label{color:#3b82f6}
+.sc.opp .sc-label{color:#d97706}.sc.ref .sc-label{color:#8b5cf6}
+.sc-sub{font-size:11px;color:#94a3b8;margin-bottom:14px}
+.sc-stats{display:flex;gap:18px;margin-bottom:12px;flex-wrap:wrap}
+.sc-sv{font-size:22px;font-weight:800;color:#0f172a;line-height:1.1}
+.sc-sl{font-size:9.5px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.sc-terms{font-size:11.5px;color:#64748b;line-height:1.7}
+.sc-terms span{color:#0f172a;font-weight:600}
+
+/* ── DATATABLES custom ── */
+table.dataTable{border-collapse:collapse!important;width:100%!important;font-size:12.5px}
+table.dataTable thead th{background:#f8fafc;color:#374151;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:10px 12px;border-bottom:2px solid #e2e8f0;cursor:pointer}
+table.dataTable thead th:hover{background:#f1f5f9}
+table.dataTable tbody td{padding:10px 12px;color:#374151;border-bottom:1px solid rgba(0,0,0,.05);vertical-align:middle}
+table.dataTable tbody tr:hover td{background:rgba(0,201,167,.04)}
+table.dataTable tbody tr:nth-child(even) td{background:#fafafa}
+.dataTables_wrapper .dataTables_filter input{border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px;font-size:12px;font-family:'Inter',sans-serif;outline:none;transition:.15s}
+.dataTables_wrapper .dataTables_filter input:focus{border-color:#00c9a7;box-shadow:0 0 0 3px rgba(0,201,167,.1)}
+.dataTables_wrapper .dataTables_length select{border:1px solid #e2e8f0;border-radius:8px;padding:5px 8px;font-family:'Inter',sans-serif;font-size:12px;outline:none}
+.dataTables_wrapper .dataTables_info,.dataTables_wrapper .dataTables_paginate{font-size:12px;color:#94a3b8;margin-top:12px}
+.dataTables_wrapper .dataTables_paginate .paginate_button{border-radius:6px;padding:4px 10px;border:1px solid transparent!important}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{background:#0f172a!important;color:#00c9a7!important;border-color:#0f172a!important}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover:not(.current){background:rgba(0,201,167,.1)!important;color:#00c9a7!important;border-color:transparent!important}
+.dt-term{font-weight:600;color:#0f172a;line-height:1.3}
+.rv{color:#15803d;font-weight:800}
+.metric-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.metric-row:last-child{border-bottom:none}
+.ml{font-size:13px;color:#64748b}.mv{font-size:13px;font-weight:700;color:#0f172a}
+
+/* ── CHART ── */
+.cw{position:relative;width:100%}
+
+/* ── SCROLLBAR ── */
+.panels::-webkit-scrollbar{width:5px}.panels::-webkit-scrollbar-track{background:#e2e8f0}.panels::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}.theme-grid{grid-template-columns:1fr 1fr}.seg-grid{grid-template-columns:1fr}.beh-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="root">
+
+<!-- ─── SIDEBAR ─── -->
+<aside id="sb">
+  <div class="sb-logo">
+    <img src="data:image/png;base64,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" alt="NorthSide" style="width:180px;height:auto;display:block">
+  </div>
+
+  <div class="sb-divider">Dashboard</div>
+  <div class="nav-item active" onclick="nav('exec',this)"><span class="ni">▣</span>Executive Summary</div>
+  <div class="nav-item" onclick="nav('overview',this)"><span class="ni">◈</span>Performance Overview</div>
+  <div class="sb-divider">Keyword Insights</div>
+  <div class="nav-item" onclick="nav('themes',this)"><span class="ni">★</span>Top Keyword Themes</div>
+  <div class="nav-item" onclick="nav('behaviour',this)"><span class="ni">↗</span>Search Behaviour</div>
+  <div class="nav-item" onclick="nav('segs',this)"><span class="ni">⊞</span>Keyword Segmentation</div>
+  <div class="sb-divider">Strategy</div>
+  <div class="nav-item" onclick="nav('growth',this)"><span class="ni">◉</span>Growth Opportunities</div>
+  <div class="nav-item" onclick="nav('expand',this)"><span class="ni">⊕</span>KW Expansion</div>
+  <div class="nav-item" onclick="nav('reco',this)"><span class="ni">◎</span>Recommendations</div>
+  <div class="nav-item" onclick="nav('action',this)"><span class="ni">✦</span>Next Steps</div>
+
+  <div class="sb-foot">
+    <div class="sf-l">Client</div><div class="sf-v">Jackfruit365</div>
+    <div class="sf-l">Period</div><div class="sf-v">Jun 1–21, 2026</div>
+    <div class="sf-l">Prepared by</div><div class="sf-v" style="margin-bottom:10px">NorthSide</div>
+    <div class="sf-conf">Confidential</div>
+  </div>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<div id="main">
+  <div class="bbar">
+    <div>
+      <div class="bb-name">JACKFRUIT365</div>
+      <div class="bb-sub">Amazon Advertising · Keyword Analysis Report · Jun 1–21, 2026</div>
+    </div>
+    <div class="bb-r">
+      <div class="bb-period">21-Day Keyword Review</div>
+      <div class="bb-conf">Confidential · NorthSide</div>
+    </div>
+  </div>
+
+  <div class="panels">
+
+  <!-- ══ 1. EXECUTIVE SUMMARY ══ -->
+  <section id="panel-exec" class="panel active">
+    <div class="eyebrow">Executive Summary</div>
+    <h2>Strong Consumer Demand &amp; Market Leadership on Amazon</h2>
+    <p class="sub">Sponsored Products · Jun 1–21, 2026 · 138 active search terms</p>
+
+    <div class="ins ins-teal mb16">
+      <div class="il">Period Headline</div>
+      <div class="it">
+        <strong class="big">14.52x</strong> ROAS across 138 active search terms — 6.9% ACoS, 36.2% CVR (3× industry avg), 1,303 orders in 21 days.
+        Brand searches deliver <strong>31x returns</strong>; 1 in 3 ad clicks converts to a purchase.
+      </div>
+    </div>
+
+    <div class="g3 mb16">
+      <div class="ins ins-grn" style="margin-bottom:0">
+        <div class="il">Consumer Engagement</div>
+        <div class="it"><strong>15.4% CTR</strong> · <strong>36.2% CVR</strong> · Both significantly above Amazon category benchmarks.</div>
+      </div>
+      <div class="ins ins-blu" style="margin-bottom:0">
+        <div class="il">Brand Recognition</div>
+        <div class="it"><strong>52% of revenue</strong> from branded searches · Top brand term returns up to <strong>67.6x ROAS</strong>.</div>
+      </div>
+      <div class="ins ins-pur" style="margin-bottom:0">
+        <div class="il">Growth Signal</div>
+        <div class="it">Health &amp; diabetes searches convert at up to <strong>57.1%</strong> — highest CVR segment, currently underinvested.</div>
+      </div>
+    </div>
+
+    <div class="g4">
+      <div class="kc"><div class="kl">Total Ad Revenue</div><div class="kv teal">₹6.30L</div><div class="km"><span class="b b-teal">21 days</span></div></div>
+      <div class="kc"><div class="kl">Return on Ad Spend</div><div class="kv grn">14.52x</div><div class="km"><span class="b b-grn">₹14.52 per ₹1</span></div></div>
+      <div class="kc"><div class="kl">Total Customer Orders</div><div class="kv">1,303</div><div class="km"><span class="b b-neu">62 orders/day</span></div></div>
+      <div class="kc"><div class="kl">Purchase Conversion</div><div class="kv grn">36.2%</div><div class="km"><span class="b b-grn">3× industry avg</span></div></div>
+    </div>
+  </section>
+
+  <!-- ══ 2. PERFORMANCE OVERVIEW ══ -->
+  <section id="panel-overview" class="panel">
+    <div class="eyebrow">Performance Overview</div>
+    <h2>Portfolio Keyword Metrics at a Glance</h2>
+    <p class="sub">Amazon Sponsored Products Search Term Report · Jun 1–21, 2026</p>
+
+    <div class="g4 mb16">
+      <div class="kc"><div class="kl">Ad Revenue Generated</div><div class="kv teal">₹6,30,245</div><div class="km"><span class="b b-teal">Sponsored Products</span></div></div>
+      <div class="kc"><div class="kl">Ad Spend Invested</div><div class="kv">₹43,408</div><div class="km"><span class="b b-neu">₹2,067/day avg</span></div></div>
+      <div class="kc"><div class="kl">Return on Ad Spend</div><div class="kv grn">14.52x</div><div class="km"><span class="b b-grn">Best-in-class</span></div></div>
+      <div class="kc"><div class="kl">Advertising Cost of Sales</div><div class="kv grn">6.9%</div><div class="km"><span class="b b-grn">Excellent efficiency</span></div></div>
+      <div class="kc"><div class="kl">Customer Orders</div><div class="kv">1,303</div><div class="km"><span class="b b-neu">62/day average</span></div></div>
+      <div class="kc"><div class="kl">Ad Click-Through Rate</div><div class="kv teal">15.4%</div><div class="km"><span class="b b-teal">High ad relevance</span></div></div>
+      <div class="kc"><div class="kl">Purchase Conversion</div><div class="kv grn">36.2%</div><div class="km"><span class="b b-grn">3× industry avg</span></div></div>
+      <div class="kc"><div class="kl">Active Search Terms</div><div class="kv">138</div><div class="km"><span class="b b-teal">71 HERO terms</span></div></div>
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <div class="ct">Daily Revenue — Jun 1–21, 2026</div>
+        <div class="cw" style="height:200px"><canvas id="trendChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ct">Revenue by Customer Intent Segment</div>
+        <div class="cw" style="height:160px"><canvas id="segDonut"></canvas></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:11px;color:#64748b">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#00c9a7;display:inline-block"></span>Brand Intent · 52.1% · 31.3x ROAS</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#3b82f6;display:inline-block"></span>Category · 36.9% · 8.9x</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#7c3aed;display:inline-block"></span>ASIN/PT · 8.7% · 10.8x</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#d97706;display:inline-block"></span>Health Intent · 2.2% · 8.5x</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3. TOP KEYWORD THEMES ══ -->
+  <section id="panel-themes" class="panel">
+    <div class="eyebrow">Top Keyword Themes</div>
+    <h2>Best-Performing Search Categories</h2>
+    <p class="sub">Three dominant search themes · Jun 1–21, 2026</p>
+
+    <div class="theme-grid mb16">
+      <div class="tc brand">
+        <div class="tc-label">Brand Intent</div>
+        <div class="tc-roas">31.3x ROAS</div>
+        <div class="tc-orders">700 orders · ₹3,28,560 revenue · 52% of portfolio</div>
+        <div class="tc-bar"><div class="tc-bar-fill" style="width:100%"></div></div>
+        <div class="tc-insight">Brand-loyal buyers searching for Jackfruit365 by name. Top term <strong>"jackfruit365"</strong> returns <strong>67.6x ROAS</strong> — highest in portfolio.</div>
+      </div>
+      <div class="tc cat">
+        <div class="tc-label">Category Discovery</div>
+        <div class="tc-roas">8.9x ROAS</div>
+        <div class="tc-orders">473 orders · ₹2,32,804 revenue · 37% of portfolio</div>
+        <div class="tc-bar"><div class="tc-bar-fill" style="width:28%"></div></div>
+        <div class="tc-insight"><strong>"jackfruit flour"</strong> alone: 334 orders, 40.7% CVR. Jackfruit365 leads category-level search decisively.</div>
+      </div>
+      <div class="tc health">
+        <div class="tc-label">Health &amp; Wellness</div>
+        <div class="tc-roas">8.5x ROAS</div>
+        <div class="tc-orders">25 orders · ₹13,940 revenue · Strong CVR signal</div>
+        <div class="tc-bar"><div class="tc-bar-fill" style="width:27%"></div></div>
+        <div class="tc-insight"><strong>"jack fruit flour for diabetes"</strong> converts at <strong>57.1%</strong> — highest CVR in portfolio. High-intent, under-served segment.</div>
+      </div>
+    </div>
+
+    <div class="card mb16">
+      <div class="ct">Top 15 Keywords by Revenue — Interactive · Click Headers to Sort</div>
+      <table id="topKwTable" style="width:100%">
+        <thead><tr>
+          <th>Search Term</th><th>Theme</th><th>Orders</th>
+          <th>Revenue (₹)</th><th>ROAS</th><th>ACoS</th><th>CTR</th><th>CVR</th><th>Tag</th>
+        </tr></thead>
+        <tbody id="topKwBody"></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="ct">Revenue Contribution by Keyword Theme</div>
+      <div class="cw" style="height:170px"><canvas id="themeChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ══ 4. SEARCH BEHAVIOUR ══ -->
+  <section id="panel-behaviour" class="panel">
+    <div class="eyebrow">Consumer Search Behaviour</div>
+    <h2>How Customers Discover &amp; Purchase Jackfruit365</h2>
+    <p class="sub">Purchase conversion &amp; search intent · Jun 1–21, 2026</p>
+
+    <div class="beh-grid mb16">
+      <div class="beh-card">
+        <div class="beh-val" style="color:#00c9a7">36.2%</div>
+        <div class="beh-label">Overall Purchase Conversion Rate</div>
+        <div class="beh-bar"><div class="beh-bar-f" style="width:72%;background:#00c9a7"></div></div>
+        <div class="beh-sub"><strong>3× the Amazon category benchmark</strong> (10–12%). Strong product-market fit across all keyword segments.</div>
+      </div>
+      <div class="beh-card">
+        <div class="beh-val" style="color:#3b82f6">15.4%</div>
+        <div class="beh-label">Ad Click-Through Rate</div>
+        <div class="beh-bar"><div class="beh-bar-f" style="width:77%;background:#3b82f6"></div></div>
+        <div class="beh-sub"><strong>5× above Amazon average</strong> (3–5%). Confirms strong ad relevance and brand recognition at the search results page.</div>
+      </div>
+      <div class="beh-card">
+        <div class="beh-val" style="color:#8b5cf6">57.1%</div>
+        <div class="beh-label">Highest CVR — Health Intent Terms</div>
+        <div class="beh-bar"><div class="beh-bar-f" style="width:57%;background:#8b5cf6"></div></div>
+        <div class="beh-sub">More than 1 in 2 clicks converts. Health-motivated customers show the strongest purchase intent in the portfolio.</div>
+      </div>
+      <div class="beh-card">
+        <div class="beh-val" style="color:#16a34a">67.6x</div>
+        <div class="beh-label">Peak ROAS — "jackfruit365" Exact Search</div>
+        <div class="beh-bar"><div class="beh-bar-f" style="width:100%;background:#16a34a"></div></div>
+        <div class="beh-sub">Brand-loyal buyers seeking Jackfruit365 by name — near-zero cost of conversion at <strong>1.5% ACoS</strong>.</div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <div class="ct">ROAS by Match Type — Customer Search Precision</div>
+        <div class="cw" style="height:185px"><canvas id="matchChart"></canvas></div>
+        <div style="font-size:12px;color:#64748b;margin-top:12px;line-height:1.6">
+          Phrase (20.5x) most efficient · Broad (18.5x) highest volume at 573 orders · Auto (10.1x) profitable across discovery terms.
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct">Key Purchase Intent Signals</div>
+        <div class="metric-row"><span class="ml">Most purchase-ready customers search</span><span class="mv">Phrase terms (20.5x ROAS)</span></div>
+        <div class="metric-row"><span class="ml">Highest-volume customer query</span><span class="mv">"jackfruit flour" (334 orders)</span></div>
+        <div class="metric-row"><span class="ml">Strongest brand recall term</span><span class="mv">"jackfruit365" (67.6x ROAS)</span></div>
+        <div class="metric-row"><span class="ml">Highest conversion rate term</span><span class="mv">"green jackfruit flour" (52.4%)</span></div>
+        <div class="metric-row"><span class="ml">Most profitable single term</span><span class="mv">"jackfruit 365 flour" (39.9x)</span></div>
+        <div class="metric-row"><span class="ml">Health intent purchase conversion</span><span class="mv">Up to 57.1% per click</span></div>
+        <div class="metric-row"><span class="ml">Brand search revenue share</span><span class="mv">52.1% of total revenue</span></div>
+        <div class="metric-row"><span class="ml">Category search new customer share</span><span class="mv">36.9% of total revenue</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Daily ROAS Trend — Consumer Purchase Momentum (Jun 1–21)</div>
+      <div class="cw" style="height:155px"><canvas id="roasTrend"></canvas></div>
+      <div style="font-size:12px;color:#64748b;margin-top:10px;line-height:1.6">Peak <strong>20.78x</strong> on Jun 7 · Portfolio average <strong>14.52x</strong> sustained across full 21-day period.</div>
+    </div>
+  </section>
+
+  <!-- ══ 5. KEYWORD SEGMENTATION ══ -->
+  <section id="panel-segs" class="panel">
+    <div class="eyebrow">Keyword Segmentation</div>
+    <h2>Performance-Based Keyword Categories</h2>
+    <p class="sub">HERO ≥5x · SCALE 1.5–5x · OPTIMIZE 0.5–1.5x · REFINE &lt;0.5x · NorthSide Framework</p>
+
+    <div class="ins ins-teal mb16">
+      <div class="il">Portfolio Quality</div>
+      <div class="it">
+        <strong>71 of 138 terms (51%) are HERO performers</strong> generating <strong>95% of all revenue</strong>. Exceptional concentration in high-return keywords.
+      </div>
+    </div>
+
+    <div class="seg-grid mb16">
+      <div class="sc hero">
+        <div class="sc-label">HERO — Scale Investment</div>
+        <div class="sc-sub">Excellent · ROAS ≥5x · Core revenue engine</div>
+        <div class="sc-stats">
+          <div><div class="sc-sv">71</div><div class="sc-sl">Terms</div></div>
+          <div><div class="sc-sv">₹5.99L</div><div class="sc-sl">Revenue</div></div>
+          <div><div class="sc-sv">17.7x</div><div class="sc-sl">Blended ROAS</div></div>
+          <div><div class="sc-sv">95%</div><div class="sc-sl">Revenue Share</div></div>
+        </div>
+        <div style="font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Headline Terms</div>
+        <div class="sc-terms">
+          <span>jackfruit365</span> 67.6x · <span>jackfruit 365</span> 56.0x · <span>jackfruit 365 flour</span> 39.9x · <span>jackfruit powder 365</span> 33.8x<br>
+          <em style="color:#94a3b8;font-size:11px">+ 66 additional HERO terms</em>
+        </div>
+      </div>
+      <div class="sc scale">
+        <div class="sc-label">SCALE — Optimise &amp; Grow</div>
+        <div class="sc-sub">Growth Opportunity · ROAS 1.5–5x · Refine for efficiency gains</div>
+        <div class="sc-stats">
+          <div><div class="sc-sv">8</div><div class="sc-sl">Terms</div></div>
+          <div><div class="sc-sv">₹30,360</div><div class="sc-sl">Revenue</div></div>
+          <div><div class="sc-sv">4.2x</div><div class="sc-sl">Blended ROAS</div></div>
+          <div><div class="sc-sv">4.8%</div><div class="sc-sl">Revenue Share</div></div>
+        </div>
+        <div style="font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Key Terms</div>
+        <div class="sc-terms">
+          <span>jackfruit powder</span> 4.6x · <span>raw jackfruit powder</span> 3.4x<br>
+          <em style="color:#94a3b8;font-size:11px">2–3 terms promotable to HERO with bid refinement</em>
+        </div>
+      </div>
+      <div class="sc opp">
+        <div class="sc-label">OPTIMIZE — Emerging Potential</div>
+        <div class="sc-sub">Exploratory · Low ROAS currently · Test and learn</div>
+        <div class="sc-stats">
+          <div><div class="sc-sv">0</div><div class="sc-sl">Terms</div></div>
+          <div><div class="sc-sv">—</div><div class="sc-sl">Revenue</div></div>
+          <div><div class="sc-sv">—</div><div class="sc-sl">ROAS</div></div>
+          <div><div class="sc-sv">—</div><div class="sc-sl">Revenue Share</div></div>
+        </div>
+        <div style="font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Status</div>
+        <div class="sc-terms">
+          No terms in this range — reflects strong portfolio precision and high-intent audience focus.<br>
+          <em style="color:#94a3b8;font-size:11px">New expansion terms may enter here initially</em>
+        </div>
+      </div>
+      <div class="sc ref">
+        <div class="sc-label">REFINE — Search Term Review</div>
+        <div class="sc-sub">Exploration phase · Test, learn, refocus investment</div>
+        <div class="sc-stats">
+          <div><div class="sc-sv">59</div><div class="sc-sl">Terms</div></div>
+          <div><div class="sc-sv">₹2,274</div><div class="sc-sl">Test Spend</div></div>
+          <div><div class="sc-sv">—</div><div class="sc-sl">Avg ROAS</div></div>
+          <div><div class="sc-sv">43%</div><div class="sc-sl">Term Count</div></div>
+        </div>
+        <div style="font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Nature of Terms</div>
+        <div class="sc-terms">
+          <strong>Exploratory coverage</strong> — no conversions in June period. Learnings feed future keyword expansion and search term strategy.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Revenue &amp; Spend Distribution by Segment</div>
+      <div class="cw" style="height:165px"><canvas id="segBarChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ══ 6. GROWTH OPPORTUNITIES ══ -->
+  <section id="panel-growth" class="panel">
+    <div class="eyebrow">Growth Opportunities</div>
+    <h2>High-Potential Expansion Areas for Jackfruit365</h2>
+    <p class="sub">Based on Jun 1–21 keyword performance data</p>
+
+
+
+    <div class="g2 mb16">
+      <div class="gc">
+        <div class="gc-num">1</div>
+        <div class="gc-title">Brand Loyalty Segment — Scale the Crown Jewels</div>
+        <div class="gc-text">Exact brand searches ("jackfruit365", "jackfruit 365", "jackfruit powder 365") return 33–67x ROAS. The most capital-efficient channel — loyal customers with proven purchase intent and minimal cost of conversion.</div>
+        <div class="gc-metric">↑ Up to 67.6x ROAS · 30–60 additional daily orders potential</div>
+      </div>
+      <div class="gc">
+        <div class="gc-num">2</div>
+        <div class="gc-title">Health &amp; Diabetes-Care Consumer Segment</div>
+        <div class="gc-text">Searches like "jack fruit flour for diabetes" (57.1% CVR) and "jackfruit 365 powder for diabetics kerala" (34% CVR, 14.4x ROAS) signal a motivated, high-intent audience. Current spend of ₹1,650 is substantially below the segment's demonstrated 8.5x ROAS potential.</div>
+        <div class="gc-metric">↑ 57.1% purchase conversion · High-value, repeat-purchase audience</div>
+      </div>
+      <div class="gc">
+        <div class="gc-num">3</div>
+        <div class="gc-title">Green Jackfruit &amp; Raw Product Variants</div>
+        <div class="gc-text">"Green jackfruit flour" (52.4% CVR, 14.6x ROAS) · "jackfruit365 green jackfruit flour" (48.1% CVR). Low competition, differentiated positioning for health-focused and recipe-conscious consumers.</div>
+        <div class="gc-metric">↑ 48–52% CVR signals · Premium positioning opportunity</div>
+      </div>
+      <div class="gc">
+        <div class="gc-num">4</div>
+        <div class="gc-title">Category Leadership — "jackfruit flour" Dominance</div>
+        <div class="gc-text">334 orders · 40.7% CVR · 17.3% CTR · 4,750 impressions. Highest-volume term in portfolio. Sustained visibility here consolidates category market share as competition grows.</div>
+        <div class="gc-metric">↑ 334 orders · 40.7% CVR · Market leadership signal</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Opportunity Assessment — Revenue Potential by Segment (Current vs. Scaled)</div>
+      <div class="cw" style="height:175px"><canvas id="growthChart"></canvas></div>
+      <div style="font-size:12px;color:#64748b;margin-top:12px;line-height:1.6">Based on current ROAS rates applied to expanded investment levels · Illustrative projections from observed keyword efficiency</div>
+    </div>
+  </section>
+
+  <!-- ══ 7. AMAZON SALES GROWTH THROUGH KEYWORD EXPANSION ══ -->
+  <section id="panel-expand" class="panel">
+    <div class="eyebrow">Amazon Sales Growth Opportunities</div>
+    <h2>Keyword Expansion to Unlock Additional Sales</h2>
+    <p class="sub">Generic, category, long-tail &amp; regional keyword opportunities · Strategic growth analysis · Jun 2026</p>
+
+    <div class="ins ins-teal mb16">
+      <div class="il">Expansion Rationale</div>
+      <div class="it">
+        Current keyword portfolio is <strong>highly efficient on branded and core category terms</strong>. 
+        Significant untapped search demand exists in generic ingredient queries, atta-category terms, health and condition-specific searches, 
+        and regional language variations — representing distinct customer segments not yet reached at scale.
+      </div>
+    </div>
+
+    <!-- ── OPPORTUNITY TABLE ───────────────────────────────────────────── -->
+    <div class="card mb16">
+      <div class="ct">Keyword Expansion Opportunities — Overview</div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:#f8fafc">
+            <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#374151;border-bottom:2px solid #e2e8f0;min-width:160px">Keyword Theme</th>
+            <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#374151;border-bottom:2px solid #e2e8f0;min-width:170px">Consumer Intent</th>
+            <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#374151;border-bottom:2px solid #e2e8f0;min-width:170px">Business Relevance</th>
+            <th style="text-align:left;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#374151;border-bottom:2px solid #e2e8f0;min-width:170px">Sales Growth Potential</th>
+            <th style="text-align:center;padding:10px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#374151;border-bottom:2px solid #e2e8f0;min-width:80px">Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Jackfruit Flour</div><div style="font-size:11px;color:#94a3b8">Generic &amp; size variants</div></td>
+            <td style="padding:10px 12px;color:#374151">Category discovery buyers; searching for jackfruit flour by product type, weight, or use case</td>
+            <td style="padding:10px 12px;color:#374151">Primary new-customer acquisition channel; 334 orders already generated on core term</td>
+            <td style="padding:10px 12px;color:#374151">Largest search volume in category; coverage gaps in 1kg, 500g, and buying-intent variants</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-grn">High</span></td>
+          </tr>
+          <tr style="background:#fafafa;border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Green Jackfruit Flour</div><div style="font-size:11px;color:#94a3b8">Raw / unripe variants</div></td>
+            <td style="padding:10px 12px;color:#374151">Health-focused buyers seeking natural, minimally processed flour alternatives</td>
+            <td style="padding:10px 12px;color:#374151">Highest CVR sub-category (52.4%) with low competition; premium product differentiation</td>
+            <td style="padding:10px 12px;color:#374151">Strong demand signal with limited competitive coverage; scope for immediate volume growth</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-grn">High</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Jackfruit Atta</div><div style="font-size:11px;color:#94a3b8">Indian flour language</div></td>
+            <td style="padding:10px 12px;color:#374151">Indian households searching for atta alternatives; diabetic-friendly atta seekers</td>
+            <td style="padding:10px 12px;color:#374151">"Atta" is India's dominant flour search term; near-zero current coverage represents a significant gap</td>
+            <td style="padding:10px 12px;color:#374151">Very high untapped search volume; directly bridges product to India's largest dietary staple category</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-grn">High</span></td>
+          </tr>
+          <tr style="background:#fafafa;border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Green Jackfruit Atta</div><div style="font-size:11px;color:#94a3b8">Premium atta segment</div></td>
+            <td style="padding:10px 12px;color:#374151">Health-aware buyers combining natural ingredient preference with Indian atta language</td>
+            <td style="padding:10px 12px;color:#374151">Combines two high-CVR signals (green jackfruit + atta); emerging search category</td>
+            <td style="padding:10px 12px;color:#374151">Emerging search category; first-mover advantage available with minimal current competition</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-blu">Medium</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Jackfruit Powder for Diabetes</div><div style="font-size:11px;color:#94a3b8">Health &amp; condition-specific</div></td>
+            <td style="padding:10px 12px;color:#374151">Diabetic and pre-diabetic consumers actively seeking functional food solutions</td>
+            <td style="padding:10px 12px;color:#374151">57.1% CVR observed; highest purchase intent segment in portfolio; directly aligned to product benefits</td>
+            <td style="padding:10px 12px;color:#374151">India's 77M diabetic population; rapidly growing health-food search category on Amazon</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-grn">High</span></td>
+          </tr>
+          <tr style="background:#fafafa;border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Green Jackfruit Powder</div><div style="font-size:11px;color:#94a3b8">Raw powder variants</div></td>
+            <td style="padding:10px 12px;color:#374151">Consumers seeking unprocessed, natural jackfruit powder for cooking or health use</td>
+            <td style="padding:10px 12px;color:#374151">43.8% CVR on green jackfruit powder terms observed; differentiated from processed variants</td>
+            <td style="padding:10px 12px;color:#374151">Growing clean-label and natural ingredient trend; premiumisation opportunity</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-grn">High</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Related Flour Alternatives</div><div style="font-size:11px;color:#94a3b8">Adjacent category</div></td>
+            <td style="padding:10px 12px;color:#374151">Consumers exploring low-GI, gluten-free, or alternative flour options beyond standard wheat/maida</td>
+            <td style="padding:10px 12px;color:#374151">Positions Jackfruit365 in the broader alternative flour market; attracts new audiences</td>
+            <td style="padding:10px 12px;color:#374151">Large addressable market; captures health-conscious buyers not yet searching for jackfruit specifically</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-blu">Medium</span></td>
+          </tr>
+          <tr style="background:#fafafa">
+            <td style="padding:10px 12px"><div style="font-weight:700;color:#0f172a;margin-bottom:2px">Regional &amp; Local-Language</div><div style="font-size:11px;color:#94a3b8">Kathal · Chakka · Halasina Hittu</div></td>
+            <td style="padding:10px 12px;color:#374151">Regional buyers across South and Central India searching in their native language</td>
+            <td style="padding:10px 12px;color:#374151">34% CVR already observed on Kerala-specific terms; confirms strong regional purchase intent</td>
+            <td style="padding:10px 12px;color:#374151">Reaches buyers in jackfruit's home markets; untapped reach in Hindi, Malayalam, Kannada, Tamil searches</td>
+            <td style="padding:10px 12px;text-align:center"><span class="b b-blu">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- ── DETAIL EXPANSION CARDS ──────────────────────────────────────── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+      <!-- CARD A: Jackfruit Flour Generic -->
+      <div class="card" style="border-top:3px solid #00c9a7">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#00c9a7;margin-bottom:3px">Generic Category</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Jackfruit Flour — Generic &amp; Variants</div>
+          </div>
+          <span class="b b-grn">High</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-teal">334 orders on core term</span><span class="b b-neu">40.7% CVR observed</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          jackfruit flour 1kg &nbsp;·&nbsp; jackfruit flour 500g &nbsp;·&nbsp; jackfruit flour buy online &nbsp;·&nbsp; jackfruit flour price india &nbsp;·&nbsp; best jackfruit flour india &nbsp;·&nbsp; jackfruit flour organic &nbsp;·&nbsp; jackfruit flour for cooking &nbsp;·&nbsp; pure jackfruit flour &nbsp;·&nbsp; jackfruit flour pack
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> Weight and size variants ("1kg", "500g") capture buyers who know their quantity. Buying-intent modifiers ("buy online", "price") reach customers actively comparing options. Both clusters are underserved relative to demand.
+        </div>
+      </div>
+
+      <!-- CARD B: Green Jackfruit Flour + Powder -->
+      <div class="card" style="border-top:3px solid #3b82f6">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#3b82f6;margin-bottom:3px">Premium Sub-Category</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Green Jackfruit Flour &amp; Powder</div>
+          </div>
+          <span class="b b-grn">High</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-blu">52.4% CVR · 43.8% CVR observed</span><span class="b b-neu">Low competition</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          green jackfruit flour &nbsp;·&nbsp; raw jackfruit flour &nbsp;·&nbsp; unripe jackfruit flour &nbsp;·&nbsp; green jackfruit powder &nbsp;·&nbsp; raw jackfruit powder buy &nbsp;·&nbsp; green jackfruit flour for diabetes &nbsp;·&nbsp; green jackfruit flour recipes &nbsp;·&nbsp; green jackfruit flour health benefits &nbsp;·&nbsp; green jackfruit flour 1kg
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> Green/raw jackfruit searches are the portfolio's highest-converting cluster (48–52% CVR). Health-focused and recipe-conscious consumers specifically seek the unprocessed variant — a differentiated position with minimal competition.
+        </div>
+      </div>
+
+      <!-- CARD C: Jackfruit Atta + Green Jackfruit Atta -->
+      <div class="card" style="border-top:3px solid #8b5cf6">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#8b5cf6;margin-bottom:3px">Indian Flour Language</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Jackfruit Atta &amp; Green Jackfruit Atta</div>
+          </div>
+          <span class="b b-grn">High / Medium</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-pur" style="background:#ede9fe;color:#6d28d9">Near-zero current coverage</span><span class="b b-neu">India's primary flour search term</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          jackfruit atta &nbsp;·&nbsp; kathal atta &nbsp;·&nbsp; jackfruit atta for diabetics &nbsp;·&nbsp; jackfruit atta online &nbsp;·&nbsp; jackfruit atta price &nbsp;·&nbsp; low glycemic atta india &nbsp;·&nbsp; green jackfruit atta &nbsp;·&nbsp; raw jackfruit atta &nbsp;·&nbsp; green jackfruit atta diabetic &nbsp;·&nbsp; diabetic friendly atta jackfruit
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> "Atta" is the dominant Indian consumer word for flour. Jackfruit365 currently has minimal visibility in atta searches — a large, unserved audience that naturally uses this term rather than "flour". "Jackfruit atta for diabetics" directly aligns to the product's health positioning.
+        </div>
+      </div>
+
+      <!-- CARD D: Diabetes & Health Long-Tail -->
+      <div class="card" style="border-top:3px solid #16a34a">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#16a34a;margin-bottom:3px">Health &amp; Long-Tail</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Diabetes &amp; Condition-Specific Keywords</div>
+          </div>
+          <span class="b b-grn">High</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-grn">57.1% CVR observed</span><span class="b b-neu">Highest intent segment</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          jackfruit powder for diabetes &nbsp;·&nbsp; jackfruit flour glycemic index &nbsp;·&nbsp; low gi jackfruit flour &nbsp;·&nbsp; jackfruit flour for diabetic patients &nbsp;·&nbsp; jackfruit flour for weight loss &nbsp;·&nbsp; gluten free jackfruit flour &nbsp;·&nbsp; jackfruit flour health benefits &nbsp;·&nbsp; diabetes friendly flour india &nbsp;·&nbsp; jackfruit flour blood sugar &nbsp;·&nbsp; jackfruit flour for prediabetes
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> India has 77M+ diabetic consumers. Condition-specific flour searches on Amazon are growing rapidly. Observed CVR of 57.1% confirms these buyers are highly motivated — yet current spend on this segment is well below its demonstrated potential.
+        </div>
+      </div>
+
+      <!-- CARD E: Related Flour Alternatives -->
+      <div class="card" style="border-top:3px solid #d97706">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#d97706;margin-bottom:3px">Adjacent Category</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Related &amp; Alternative Flour Searches</div>
+          </div>
+          <span class="b b-blu">Medium</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-amb">Broader audience reach</span><span class="b b-neu">New customer discovery</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          low gi flour india &nbsp;·&nbsp; gluten free flour india &nbsp;·&nbsp; alternative flour for diabetes &nbsp;·&nbsp; healthy flour alternatives india &nbsp;·&nbsp; low carb flour india &nbsp;·&nbsp; diabetic flour online &nbsp;·&nbsp; wheat flour alternative india &nbsp;·&nbsp; maida substitute india &nbsp;·&nbsp; natural flour for weight loss &nbsp;·&nbsp; high fibre flour india
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> Consumers exploring alternative flours may not yet know jackfruit flour exists. Broader category searches ("low GI flour", "gluten free flour india") introduce Jackfruit365 to a health-conscious audience at the discovery stage of their journey.
+        </div>
+      </div>
+
+      <!-- CARD F: Regional & Local Language -->
+      <div class="card" style="border-top:3px solid #0ea5e9">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#0ea5e9;margin-bottom:3px">Regional &amp; Vernacular</div>
+            <div style="font-size:15px;font-weight:800;color:#0f172a">Local-Language &amp; Regional Searches</div>
+          </div>
+          <span class="b b-blu">Medium</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="b b-neu">34% CVR · Kerala terms observed</span><span class="b b-neu">South India · Central India</span>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">Keyword Coverage to Explore</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;margin-bottom:10px">
+          kathal powder &nbsp;·&nbsp; kathal flour &nbsp;·&nbsp; kathal ka atta &nbsp;·&nbsp; chakka podi &nbsp;·&nbsp; chakka powder kerala &nbsp;·&nbsp; jackfruit flour kerala &nbsp;·&nbsp; jackfruit powder south india &nbsp;·&nbsp; halasina hittu (Kannada) &nbsp;·&nbsp; pala mavu (Tamil) &nbsp;·&nbsp; jackfruit atta kerala &nbsp;·&nbsp; kathal atta online
+        </div>
+        <div style="font-size:11.5px;color:#64748b;line-height:1.55;border-top:1px solid #f1f5f9;padding-top:8px">
+          <strong>Gap:</strong> Jackfruit is a culturally significant food across South and Central India. Local-language search terms (Kathal in Hindi, Chakka in Malayalam, Halasina Hittu in Kannada, Pala in Tamil) reach buyers who search in their native language and may never use the English term "jackfruit flour".
+        </div>
+      </div>
+
+    </div><!-- /detail cards -->
+
+  </section>
+
+
+  <!-- ══ RECOMMENDATIONS ══ -->
+  <section id="panel-reco" class="panel">
+    <div class="eyebrow">Strategic Recommendations</div>
+    <h2>Keyword Strategy for Sustainable Growth</h2>
+    <p class="sub">Based on Jun 1–21, 2026 keyword data · NorthSide</p>
+
+    <div class="rc">
+      <div class="rc-num">1</div>
+      <div>
+        <div class="rc-title">Deepen Investment in Brand-Loyal Search Audiences</div>
+        <div class="rc-text">Dedicate protected budget to exact brand terms ("jackfruit365", "jackfruit 365", "jackfruit 365 flour"). At 33–67x ROAS, this is the most efficient revenue channel — ensure full-day visibility for brand-loyal audiences.</div>
+        <div class="rc-out">↑ Expected outcome: Maximum return from highest-performing brand terms</div>
+      </div>
+      <div class="rc-pri"><span class="b b-grn">Priority 1</span></div>
+    </div>
+
+    <div class="rc">
+      <div class="rc-num">2</div>
+      <div>
+        <div class="rc-title">Build a Dedicated Health &amp; Wellness Keyword Programme</div>
+        <div class="rc-text">Health-intent searches convert at up to 57.1% with 8.5x ROAS — but spend is currently under ₹1,650 for the segment. Expand structured investment across diabetes-care and health-conscious terms with dedicated budget and monthly tracking.</div>
+        <div class="rc-out">↑ Expected outcome: Expanded reach into the highest-CVR segment in the portfolio</div>
+      </div>
+      <div class="rc-pri"><span class="b b-grn">Priority 1</span></div>
+    </div>
+
+    <div class="rc">
+      <div class="rc-num">3</div>
+      <div>
+        <div class="rc-title">Consolidate Category Leadership in Jackfruit Flour Searches</div>
+        <div class="rc-text">Maintain strong visibility for "jackfruit flour" (334 orders, 40.7% CVR) and all flour search variants. This is the primary new-customer acquisition channel — defend as competitor interest in the category grows.</div>
+        <div class="rc-out">↑ Expected outcome: Sustained new-customer acquisition via category-leading terms</div>
+      </div>
+      <div class="rc-pri"><span class="b b-blu">Priority 2</span></div>
+    </div>
+
+    <div class="rc">
+      <div class="rc-num">4</div>
+      <div>
+        <div class="rc-title">Develop the Green Jackfruit &amp; Natural Product Positioning</div>
+        <div class="rc-text">Green jackfruit searches convert at 48–52% CVR. Lower competition than generic category terms — build a dedicated ad group with product-specific creative to establish a premium, differentiated position.</div>
+        <div class="rc-out">↑ Expected outcome: Differentiated position in green/raw variant searches (48–52% CVR)</div>
+      </div>
+      <div class="rc-pri"><span class="b b-blu">Priority 2</span></div>
+    </div>
+
+    <div class="rc">
+      <div class="rc-num">5</div>
+      <div>
+        <div class="rc-title">Expand into Jackfruit Atta &amp; Generic Flour Searches</div>
+        <div class="rc-text">Near-zero current coverage in "atta" search language despite it being India's dominant flour term. Expanding into jackfruit atta, green jackfruit atta, and atta-language variants opens a large untapped audience segment.</div>
+        <div class="rc-out">↑ Expected outcome: Graduate 2–3 terms from SCALE to HERO tier</div>
+      </div>
+      <div class="rc-pri"><span class="b b-amb">Priority 3</span></div>
+    </div>
+
+    <div class="rc">
+      <div class="rc-num">6</div>
+      <div>
+        <div class="rc-title">Expand Exploratory Keyword Coverage in Adjacent &amp; Regional Categories</div>
+        <div class="rc-text">Allocate a monthly discovery budget to test adjacent terms — atta/flour substitutes, regional variants, recipe-context searches. Build the next generation of HERO keywords before competitors discover them.</div>
+        <div class="rc-out">↑ Expected outcome: Systematic pipeline for next-generation HERO keyword discovery</div>
+      </div>
+      <div class="rc-pri"><span class="b b-amb">Priority 3</span></div>
+    </div>
+  </section>
+
+  <!-- ══ NEXT STEPS ══ -->
+  <section id="panel-action" class="panel">
+    <div class="eyebrow">Next Steps</div>
+    <h2>July 2026 — Keyword Growth Roadmap</h2>
+    <p class="sub">Sequenced by impact · All actions aligned with client before execution</p>
+
+    <div class="g4 mb16">
+      <div class="kc"><div class="kl">Priority Keyword Clusters</div><div class="kv teal">3</div><div class="km"><span class="b b-teal">Brand · Category · Health</span></div></div>
+      <div class="kc"><div class="kl">Brand Keyword Expansion</div><div class="kv grn">33–67x</div><div class="km"><span class="b b-grn">ROAS on top brand terms</span></div></div>
+      <div class="kc"><div class="kl">Category Leadership</div><div class="kv">334</div><div class="km"><span class="b b-neu">"jackfruit flour" orders</span></div></div>
+      <div class="kc"><div class="kl">Consumer Demand Signal</div><div class="kv grn">57.1%</div><div class="km"><span class="b b-grn">Health intent CVR</span></div></div>
+    </div>
+
+    <div class="card">
+      <div class="ap-h">Phase 1 — Immediate (Week 1)</div>
+      <div class="ap-r">
+        <div class="ap-c p1">1</div>
+        <div style="flex:1">
+          <div class="ap-t">Scale investment in top-performing brand terms</div>
+          <div class="ap-d">Allocate protected budget to top brand terms. Ensure full-day visibility during peak shopping hours.</div>
+          <div class="ap-o">↑ Outcome: Maximum return from highest-performing brand terms</div>
+        </div>
+        <span class="pp p1">High Impact</span>
+      </div>
+      <div class="ap-r">
+        <div class="ap-c p1">2</div>
+        <div style="flex:1">
+          <div class="ap-t">Protect category leadership in jackfruit flour searches</div>
+          <div class="ap-d">Maintain visibility for "jackfruit flour" and all flour variants. Primary new-customer acquisition channel.</div>
+          <div class="ap-o">↑ Outcome: Sustained new-customer acquisition via category-leading terms</div>
+        </div>
+        <span class="pp p1">High Impact</span>
+      </div>
+
+      <div class="ap-h">Phase 2 — Growth (Weeks 2–3)</div>
+      <div class="ap-r">
+        <div class="ap-c p2">3</div>
+        <div style="flex:1">
+          <div class="ap-t">Launch Health &amp; Wellness keyword expansion</div>
+          <div class="ap-d">Launch with the top 5 health-intent terms from June data. Dedicated budget, weekly tracking.</div>
+          <div class="ap-o">↑ Outcome: Expanded reach into the highest-CVR segment in the portfolio</div>
+        </div>
+        <span class="pp p2">Growth</span>
+      </div>
+      <div class="ap-r">
+        <div class="ap-c p2">4</div>
+        <div style="flex:1">
+          <div class="ap-t">Develop Green Jackfruit keyword cluster</div>
+          <div class="ap-d">Create dedicated ad group for green/raw jackfruit terms (48–52% CVR) with product-specific creative.</div>
+          <div class="ap-o">↑ Outcome: Differentiated position in green/raw variant searches (48–52% CVR)</div>
+        </div>
+        <span class="pp p2">Growth</span>
+      </div>
+      <div class="ap-r">
+        <div class="ap-c p2">5</div>
+        <div style="flex:1">
+          <div class="ap-t">Expand into Jackfruit Atta search category</div>
+          <div class="ap-d">Build initial coverage across jackfruit atta, green jackfruit atta, and atta-language variants targeting the underserved Indian household segment.</div>
+          <div class="ap-o">↑ Outcome: New audience reach via India's dominant flour search language</div>
+        </div>
+        <span class="pp p2">Growth</span>
+      </div>
+
+      <div class="ap-h">Phase 3 — Exploration (Month 2)</div>
+      <div class="ap-r">
+        <div class="ap-c p3">6</div>
+        <div style="flex:1">
+          <div class="ap-t">Launch structured keyword discovery programme</div>
+          <div class="ap-d">Monthly discovery budget for atta/flour substitutes, regional, and recipe-context terms. Systematic HERO keyword pipeline.</div>
+          <div class="ap-o">↑ Outcome: Systematic pipeline for next-generation HERO keyword discovery</div>
+        </div>
+        <span class="pp p3">Explore</span>
+      </div>
+      <div class="ap-r">
+        <div class="ap-c p3">7</div>
+        <div style="flex:1">
+          <div class="ap-t">Monthly keyword performance review</div>
+          <div class="ap-d">Review cadence: Brand segment performance · Health segment growth · Category leadership · Keyword discovery pipeline.</div>
+          <div class="ap-o">↑ Outcome: Data-driven keyword strategy updated monthly based on performance signals</div>
+        </div>
+        <span class="pp p3">Sustain</span>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /panels -->
+</div><!-- /main -->
+</div><!-- /root -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────
+const DAILY=[{d:'Jun 01',s:27860,sp:1810},{d:'Jun 02',s:44540,sp:2277},{d:'Jun 03',s:56860,sp:3403},{d:'Jun 04',s:47360,sp:4154},{d:'Jun 05',s:44820,sp:3328},{d:'Jun 06',s:30780,sp:1780},{d:'Jun 07',s:37920,sp:1825},{d:'Jun 08',s:30580,sp:1720},{d:'Jun 09',s:29260,sp:1766},{d:'Jun 10',s:27280,sp:1737},{d:'Jun 11',s:34740,sp:1767},{d:'Jun 12',s:18320,sp:1817},{d:'Jun 13',s:23280,sp:1765},{d:'Jun 14',s:18820,sp:1429},{d:'Jun 15',s:25242,sp:2089},{d:'Jun 16',s:23142,sp:2195},{d:'Jun 17',s:31020,sp:1901},{d:'Jun 18',s:22781,sp:1755},{d:'Jun 19',s:24140,sp:1679},{d:'Jun 20',s:13400,sp:1342},{d:'Jun 21',s:18100,sp:1868}];
+const DAILY_ROAS=[15.39,19.56,16.71,11.40,13.47,17.29,20.78,17.78,16.57,15.71,19.66,10.08,13.19,13.17,12.08,10.54,16.32,12.98,14.38,9.98,9.69];
+const SEG=[{n:'Brand Intent',v:52.1,r:31.26,c:'#00c9a7'},{n:'Category',v:36.9,r:8.91,c:'#3b82f6'},{n:'ASIN/PT',v:8.7,r:10.76,c:'#7c3aed'},{n:'Health Intent',v:2.2,r:8.45,c:'#d97706'}];
+const MATCH=[{t:'Phrase',r:20.51},{t:'Broad',r:18.49},{t:'Exact',r:16.50},{t:'Auto',r:10.15}];
+const THEME=[{l:'Brand Intent',rev:328560,roas:31.26,c:'#00c9a7'},{l:'Category',rev:232804,roas:8.91,c:'#3b82f6'},{l:'ASIN/PT',rev:54941,roas:10.76,c:'#7c3aed'},{l:'Health',rev:13940,roas:8.45,c:'#d97706'}];
+const TOP_KW=[
+  {term:'jackfruit flour',seg:'Category',orders:334,sales:162844,roas:11.36,acos:8.8,ctr:17.3,cvr:40.7,tag:'HERO'},
+  {term:'jackfruit 365 flour',seg:'Brand',orders:314,sales:154840,roas:39.87,acos:2.5,ctr:18.6,cvr:36.3,tag:'HERO'},
+  {term:'jack fruit 365 powder for diabetes',seg:'Brand',orders:181,sales:80740,roas:26.90,acos:3.7,ctr:23.4,cvr:35.1,tag:'HERO'},
+  {term:'jackfruit 365',seg:'Brand',orders:57,sales:26780,roas:56.01,acos:1.8,ctr:34.6,cvr:33.5,tag:'HERO'},
+  {term:'jackfruit powder',seg:'Category',orders:50,sales:23220,roas:4.59,acos:21.8,ctr:9.4,cvr:34.2,tag:'SCALE'},
+  {term:'jack fruit powder',seg:'Category',orders:36,sales:19760,roas:13.97,acos:7.2,ctr:9.8,cvr:34.0,tag:'HERO'},
+  {term:'jackfruit flour 365 for diabetics',seg:'Brand',orders:29,sales:13460,roas:12.72,acos:7.9,ctr:3.4,cvr:33.0,tag:'HERO'},
+  {term:'jackfruit 365 powder',seg:'Brand',orders:20,sales:7860,roas:24.37,acos:4.1,ctr:20.6,cvr:28.6,tag:'HERO'},
+  {term:'jackfruit 365 powder for diabetics kerala',seg:'Health',orders:18,sales:7300,roas:14.38,acos:7.0,ctr:21.0,cvr:34.0,tag:'HERO'},
+  {term:'jackfruit365 green jackfruit flour',seg:'Brand',orders:13,sales:5500,roas:26.74,acos:3.7,ctr:29.7,cvr:48.1,tag:'HERO'},
+  {term:'green jackfruit flour',seg:'Category',orders:11,sales:5420,roas:14.58,acos:6.9,ctr:15.4,cvr:52.4,tag:'HERO'},
+  {term:'jackfruit powder 365',seg:'Brand',orders:11,sales:5160,roas:33.82,acos:3.0,ctr:21.2,cvr:44.0,tag:'HERO'},
+  {term:'jack fruit flour for diabetes',seg:'Health',orders:8,sales:4480,roas:16.01,acos:6.2,ctr:31.8,cvr:57.1,tag:'HERO'},
+  {term:'jackfruit365',seg:'Brand',orders:9,sales:4260,roas:67.55,acos:1.5,ctr:37.0,cvr:30.0,tag:'HERO'},
+  {term:'raw jackfruit powder',seg:'Category',orders:8,sales:4220,roas:3.40,acos:29.4,ctr:11.3,cvr:22.2,tag:'SCALE'}
+];
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────
+const charts={};
+function nav(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+  setTimeout(()=>initCharts(id),60);
+}
+
+// ── CHART DEFAULTS ───────────────────────────────────────────────────────
+const TEAL='#00c9a7',NAVY='#0f172a',GRN='#16a34a',AMB='#d97706',BLU='#3b82f6',PUR='#7c3aed';
+const dOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+const gridLine={color:'rgba(0,0,0,.05)'};
+const tickStyle={color:'#94a3b8',font:{size:10,family:'Inter,sans-serif'}};
+
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+
+function initCharts(section){
+  // ── OVERVIEW ──
+  if(section==='overview'){
+    destroyChart('trendChart');
+    destroyChart('segDonut');
+    charts['trendChart']=new Chart(document.getElementById('trendChart'),{
+      type:'bar',
+      data:{
+        labels:DAILY.map(d=>d.d.replace('Jun ','')),
+        datasets:[
+          {type:'bar',label:'Revenue',data:DAILY.map(d=>d.s),backgroundColor:'rgba(0,201,167,.18)',borderColor:TEAL,borderWidth:1.5,borderRadius:3,yAxisID:'y'},
+          {type:'line',label:'Spend',data:DAILY.map(d=>d.sp),borderColor:'#3b82f6',borderWidth:2,pointRadius:2,fill:false,tension:.35,yAxisID:'y2'}
+        ]
+      },
+      options:{...dOpts,scales:{
+        y:{grid:gridLine,ticks:{...tickStyle,callback:v=>'₹'+(v/1000).toFixed(0)+'k'},title:{display:true,text:'Revenue (₹)',color:'#94a3b8',font:{size:9}}},
+        y2:{position:'right',grid:{display:false},ticks:{...tickStyle,callback:v=>'₹'+(v/1000).toFixed(1)+'k'},title:{display:true,text:'Spend (₹)',color:'#94a3b8',font:{size:9}}},
+        x:{grid:{display:false},ticks:{...tickStyle}}
+      },plugins:{legend:{display:true,position:'top',labels:{font:{size:10,family:'Inter,sans-serif'},color:'#64748b',boxWidth:10}}}}
+    });
+    charts['segDonut']=new Chart(document.getElementById('segDonut'),{
+      type:'doughnut',
+      data:{labels:SEG.map(s=>s.n),datasets:[{data:SEG.map(s=>s.v),backgroundColor:SEG.map(s=>s.c),borderWidth:2,borderColor:'#fff',hoverOffset:4}]},
+      options:{...dOpts,cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw}%`}}}}
+    });
+  }
+
+  // ── THEMES ──
+  if(section==='themes'){
+    destroyChart('themeChart');
+    // populate DataTable
+    if(!$.fn.DataTable.isDataTable('#topKwTable')){
+      const tbody=document.getElementById('topKwBody');
+      tbody.innerHTML='';
+      TOP_KW.forEach(k=>{
+        const tagCls=k.tag==='HERO'?'tH':k.tag==='SCALE'?'tS':'tO';
+        const segCls=k.seg==='Brand'?'b-teal':k.seg==='Category'?'b-blu':k.seg==='Health'?'b-pur':'b-neu';
+        tbody.innerHTML+=`<tr>
+          <td><div class="dt-term">${k.term}</div></td>
+          <td><span class="b ${segCls}">${k.seg}</span></td>
+          <td style="text-align:right;font-weight:700">${k.orders}</td>
+          <td style="text-align:right" class="rv">₹${k.sales.toLocaleString('en-IN')}</td>
+          <td style="text-align:right;font-weight:700;color:#16a34a">${k.roas.toFixed(1)}x</td>
+          <td style="text-align:right">${k.acos}%</td>
+          <td style="text-align:right">${k.ctr}%</td>
+          <td style="text-align:right">${k.cvr}%</td>
+          <td><span class="tag ${tagCls}">${k.tag}</span></td>
+        </tr>`;
+      });
+      $('#topKwTable').DataTable({pageLength:10,order:[[3,'desc']],language:{search:'Filter:',lengthMenu:'Show _MENU_'},dom:'<"top"fl>rt<"bottom"ip>'});
+    }
+    charts['themeChart']=new Chart(document.getElementById('themeChart'),{
+      type:'bar',
+      data:{
+        labels:THEME.map(t=>t.l),
+        datasets:[
+          {label:'Revenue (₹)',data:THEME.map(t=>t.rev),backgroundColor:THEME.map(t=>t.c+'99'),borderColor:THEME.map(t=>t.c),borderWidth:2,borderRadius:6,yAxisID:'y'},
+          {type:'line',label:'ROAS',data:THEME.map(t=>t.roas),borderColor:NAVY,borderWidth:2,pointRadius:5,pointBackgroundColor:NAVY,fill:false,yAxisID:'y2'}
+        ]
+      },
+      options:{...dOpts,scales:{
+        y:{grid:gridLine,ticks:{...tickStyle,callback:v=>'₹'+(v/1000).toFixed(0)+'k'}},
+        y2:{position:'right',grid:{display:false},ticks:{...tickStyle,callback:v=>v+'x'}},
+        x:{grid:{display:false},ticks:{...tickStyle}}
+      },plugins:{legend:{display:true,position:'top',labels:{font:{size:10,family:'Inter,sans-serif'},color:'#64748b',boxWidth:10}}}}
+    });
+  }
+
+  // ── BEHAVIOUR ──
+  if(section==='behaviour'){
+    destroyChart('matchChart');
+    destroyChart('roasTrend');
+    charts['matchChart']=new Chart(document.getElementById('matchChart'),{
+      type:'bar',
+      data:{
+        labels:MATCH.map(m=>m.t),
+        datasets:[{data:MATCH.map(m=>m.r),backgroundColor:[TEAL+'bb',BLU+'bb',GRN+'bb',AMB+'bb'],borderColor:[TEAL,BLU,GRN,AMB],borderWidth:2,borderRadius:8}]
+      },
+      options:{...dOpts,indexAxis:'y',scales:{
+        x:{grid:gridLine,ticks:{...tickStyle,callback:v=>v+'x'},min:0,max:25},
+        y:{grid:{display:false},ticks:{...tickStyle}}
+      }}
+    });
+    charts['roasTrend']=new Chart(document.getElementById('roasTrend'),{
+      type:'line',
+      data:{
+        labels:DAILY.map(d=>d.d.replace('Jun ','')),
+        datasets:[{data:DAILY_ROAS,borderColor:TEAL,backgroundColor:'rgba(0,201,167,.06)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:TEAL,fill:true,tension:.4}]
+      },
+      options:{...dOpts,scales:{
+        y:{grid:gridLine,ticks:{...tickStyle,callback:v=>v+'x'},min:5,max:25},
+        x:{grid:{display:false},ticks:{...tickStyle}}
+      }}
+    });
+  }
+
+  // ── SEGMENTATION ──
+  if(section==='segs'){
+    destroyChart('segBarChart');
+    charts['segBarChart']=new Chart(document.getElementById('segBarChart'),{
+      type:'bar',
+      data:{
+        labels:['HERO (71 terms)','SCALE (8 terms)','REFINE (59 terms)'],
+        datasets:[
+          {label:'Revenue (₹)',data:[599400,30360,0],backgroundColor:[GRN+'99',BLU+'99',PUR+'99'],borderColor:[GRN,BLU,PUR],borderWidth:2,borderRadius:6,yAxisID:'y'},
+          {label:'Spend (₹)',data:[33840,6600,2274],backgroundColor:[GRN+'33',BLU+'33',PUR+'33'],borderColor:[GRN+'88',BLU+'88',PUR+'88'],borderWidth:1.5,borderRadius:6,yAxisID:'y'}
+        ]
+      },
+      options:{...dOpts,scales:{
+        y:{grid:gridLine,ticks:{...tickStyle,callback:v=>'₹'+(v/1000).toFixed(0)+'k'}},
+        x:{grid:{display:false},ticks:{...tickStyle}}
+      },plugins:{legend:{display:true,position:'top',labels:{font:{size:10,family:'Inter,sans-serif'},color:'#64748b',boxWidth:10}}}}
+    });
+  }
+
+  // ── GROWTH ──
+  if(section==='growth'){
+    destroyChart('growthChart');
+    charts['growthChart']=new Chart(document.getElementById('growthChart'),{
+      type:'bar',
+      data:{
+        labels:['Brand Loyalty','Health & Diabetes','Green Jackfruit','Category Leader'],
+        datasets:[
+          {label:'Jun Revenue (₹)',data:[328560,13940,10920,162844],backgroundColor:TEAL+'88',borderColor:TEAL,borderWidth:2,borderRadius:6},
+          {label:'Current Spend (₹)',data:[10500,1650,748,14340],backgroundColor:BLU+'55',borderColor:BLU,borderWidth:1.5,borderRadius:6}
+        ]
+      },
+      options:{...dOpts,scales:{
+        y:{grid:gridLine,ticks:{...tickStyle,callback:v=>'₹'+(v/1000).toFixed(0)+'k'}},
+        x:{grid:{display:false},ticks:{...tickStyle}}
+      },plugins:{legend:{display:true,position:'top',labels:{font:{size:10,family:'Inter,sans-serif'},color:'#64748b',boxWidth:10}}}}
+    });
+  }
+}
+
+// ── INIT on load ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  initCharts('exec');
+  initCharts('overview');
+});
+</script>
+</body>
+</html>
